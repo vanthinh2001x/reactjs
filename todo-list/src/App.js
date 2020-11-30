@@ -11,11 +11,20 @@ class App extends Component {
       {title: 'di do xang'}
     ];
   }
+
+  onItemClicked(){
+    
+  }
+
   render(){
     return (
       <div className="App">
         {
-          this.TodoItem.map((item,index)=><TodoItem key={index} item={item}/>)
+          this.TodoItem.length>0 && this.TodoItem.map((item,index)=>
+          <TodoItem key={index} item={item} onClick={this.onItemClicked}/>)
+        }
+        {
+          this.TodoItem.length===0 && 'Nothing here'
         }
       </div>
     );
