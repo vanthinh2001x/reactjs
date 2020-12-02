@@ -12,22 +12,40 @@ class App extends Component {
     ];
   }
 
-  onItemClicked(){
-    
+  onItemClicked(item){
+    return (event)=>{
+      const isComplete = item.isComplete;
+      const { todoItems } = this.state;
+      const index = todoItems.indexOf(item);
+      this.setState({
+        todoItems: [
+          ...todoItems.slice(0,index),
+          {
+            ...item,
+            isComplete:!isComplete
+          },
+          ...todoItems.slice(index+1)
+        ]
+      });
+    };
   }
 
   render(){
-    return (
-      <div className="App">
-        {
-          this.TodoItem.length>0 && this.TodoItem.map((item,index)=>
-          <TodoItem key={index} item={item} onClick={this.onItemClicked}/>)
-        }
-        {
-          this.TodoItem.length===0 && 'Nothing here'
-        }
-      </div>
-    );
+    const { todoItems } = this.state;
+    if(TodoItem.length){
+      return (
+        <div className="App">
+          {
+            todoItems.length && todoItems.map((item,index)=>
+            <TodoItem
+              key={index} 
+              item={item} 
+              onClick={this.onItemClicked}/>
+             )
+          }
+        </div>
+      );
+    }
   }
 }
 
