@@ -43,6 +43,8 @@ class App extends Component {
       text = text.trim();
       if(!text){ return;}
       this.setState({
+        newItem: "",
+        currentFilter: 'all',
         todoItems:[
           {title: text, isComplete: false},
           ...this.state.todoItems
