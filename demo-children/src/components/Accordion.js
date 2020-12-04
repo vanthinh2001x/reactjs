@@ -15,15 +15,15 @@ class Accordion extends Component {
     }
 
     render(){
-        const{heading, content} = this.props;
+        const{heading, children} = this.props;
         const{isCollapsed} = this.state;
 
         return <div className="Accordion">
-        <div className="Heading" onClick = {this.onClick}>
-         <h2>{heading}</h2>
-        </div>
-        {!isCollapsed&&<div className="Content">{content}</div>}    
-        </div>
+            <div className="Heading" onClick = {this.onClick}>
+            <h2>{heading}</h2>
+            </div>
+            {!isCollapsed&&<div className="Content">{children}</div>}    
+            </div>
     }
 }
 
